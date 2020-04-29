@@ -1,0 +1,33 @@
+//soil moisture test
+
+int led1 = D7;
+int typesoil = 5;
+
+void setup()
+{
+    Serial.begin(9600);
+
+    delay(1000);
+
+    pinMode(typesoil, OUTPUT);
+    digitalWrite(typesoil, LOW);
+}
+
+void loop()
+{
+    int value;
+    value = soilvalue();
+
+    Serial.println(value);
+
+    delay(1000);
+}
+
+int soilvalue()
+{
+    digitalWrite(typesoil, HIGH);
+    delay(500);
+    int r = analogRead(led1);
+    digitalWrite(typesoil, LOW);
+    return r;
+}
